@@ -16,7 +16,7 @@ class Ball {
         this.location.y = _y;
 
         this.velocity.x = 5;
-        this.velocity.y = -2;
+        this.velocity.y = 0;
     }
 
     public void move() {
@@ -40,19 +40,48 @@ class Ball {
 
     public void checkCollision(Pad _obj) {
         if (this.colided(_obj)) {
-            this.velocity.x *= -1;
-            float far = dist (this.location.x,this.location.y,_obj.location.x,_obj.location.y);
-            this.velocity.y = map(far, 0, _obj.h,-5,5);
+
+
+                        PVector far = new PVector();
+                        PVector.sub(this.location, _obj.location, far);
+
+                        if (far.mag() > 20) {
+                          // Reduce angle of the ball
+                          far.y *= 0.3;
+                          // Reduce total force
+                          far.mult(0.3);
+                          this.velocity = far;
+                        }
+                        else
+                          this.velocity.x *= -1;
+                    }
+
+
+
+
+            // this.velocity.x *= -1;
+            // float far = dist (this.location.x,this.location.y,_obj.location.x,_obj.location.y);
+            // if (this.location.y > _obj.location.y + _obj.h / 2) {
+            //     far *=-1;
+            // }
+            // if (far > 0) {
+            //     this.velocity.y = map(far, 0, _obj.h, 0, 5);
+            // }
+            // if (far < 0) {
+            //     this.velocity.y = map(far, -_obj.h, 0, 0, - 5);
+            // }
+            // // if (this.location.y < _obj.location.y + _obj.h / 2 )
+            // //     this.velocity.y = map(far, 0, _obj.h, 0, -5);
         }
     }
 
     public void checkWallCollision() {
-        if (this.location.x + fat/2>= width ||
-            this.location.x - fat/2 <= 0) {
+        if (this.location.x + fat / 2>= width ||
+            this.location.x - fat / 2 <= 0) {
             this.velocity.x *= -1;
         }
-        if (this.location.y + fat/2>= height ||
-            this.location.y - fat/2<= 0) {
+        if (this.location.y + fat / 2>= height ||
+            this.location.y - fat / 2<= 0) {
             this.velocity.y *= -1;
         }
     }
