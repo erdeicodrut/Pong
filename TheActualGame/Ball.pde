@@ -1,7 +1,7 @@
 class Ball {
 
     private PVector location = new PVector();
-    private PVector velocity = new PVector();
+    public PVector velocity = new PVector();
 
     public final float fat = 20;
 
@@ -15,7 +15,7 @@ class Ball {
         this.location.x = _x;
         this.location.y = _y;
 
-        this.velocity.x = 5;
+        this.velocity.x = 10;
         this.velocity.y = 0;
     }
 
@@ -56,7 +56,7 @@ class Ball {
         }
     }
 
-    public void checkWallCollision() {
+    public int checkWallCollisions() {
         if (this.location.x + fat / 2>= width ||
             this.location.x - fat / 2 <= 0) {
             this.velocity.x *= -1;
@@ -66,12 +66,24 @@ class Ball {
             this.velocity.y *= -1;
         }
 
-        if (this.location.y + fat / 2>= height) {
-            PadL.scoreInc();
+        if (this.location.x - fat / 2<= 0) {
+            return -1;
         }
 
-        if (this.location.y - fat / 2<= 0) {
-            PadR.scoreInc();
+        if (this.location.x + fat / 2 >= width) {
+            return 1;
+        }
+        
+        return 0;
+    }
+    public void checkWallCollision() {
+        if (this.location.x + fat / 2>= width ||
+            this.location.x - fat / 2 <= 0) {
+            this.velocity.x *= -1;
+        }
+        if (this.location.y + fat / 2>= height ||
+            this.location.y - fat / 2<= 0) {
+            this.velocity.y *= -1;
         }
     }
 }

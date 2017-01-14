@@ -3,7 +3,7 @@ class Pad {
     private int score = 0;
 
     private PVector location = new PVector(0,width/2);
-    public final float fat = 20, h = 100;
+    public final float fat = 20, h = height/5;
 
     public Pad (float _x) {
         this.location.x = _x;
@@ -46,14 +46,16 @@ class Pad {
         }
     }
 
-    public void AImove(Ball a) {
-        if (a.getY() > this.location.y) {
-            this.locate(+3);
-        }
-        if (a.getY() < this.location.y) {
-            this.locate(-3);
-        }
-    }
+    //public void AImove(Ball a) {
+    //    if (a.getY() > this.location.y) {
+    //        this.locate(+3);
+    //    }
+    //    if (a.getY() < this.location.y) {
+    //        this.locate(-3);
+    //    }
+    //}
+    
+    
 
     public int getScore() { return score; }
     public void scoreInc() { score++; }
