@@ -33,3 +33,11 @@ void collisions() {
     ball.checkCollision(padR);
     ball.checkWallCollision();
 }
+
+void showScore() {
+    textMode(CENTER);
+    int scoreL = padL.getScore();
+    int scoreR = padR.getScore();
+    String textToPrint = scoreL + " : " + scoreR;
+    text(textToPrint, width/2, 30);
+}

@@ -65,5 +65,13 @@ class Ball {
             this.location.y - fat / 2<= 0) {
             this.velocity.y *= -1;
         }
+
+        if (this.location.y + fat / 2>= height) {
+            PadL.scoreInc();
+        }
+
+        if (this.location.y - fat / 2<= 0) {
+            PadR.scoreInc();
+        }
     }
 }

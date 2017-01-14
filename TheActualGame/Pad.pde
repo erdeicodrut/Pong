@@ -1,5 +1,7 @@
 class Pad {
 
+    private int score = 0;
+
     private PVector location = new PVector(0,width/2);
     public final float fat = 20, h = 100;
 
@@ -52,4 +54,7 @@ class Pad {
             this.locate(-3);
         }
     }
+
+    public int getScore() { return score; }
+    public void scoreInc() { score++; }
 }
