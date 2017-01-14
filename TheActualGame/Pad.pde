@@ -30,15 +30,15 @@ class Pad {
     }
 
     private void movePadUManually() {
-        if (keyPressed) {
-            if (keyCode == UP) {
+        if (mousePressed) {
+            if (mouseY < height / 2) {
                 this.locate(-3);
             }
         }
     }
     private void movePadDManually() {
-        if (keyPressed) {
-            if (keyCode == DOWN) {
+        if (mousePressed) {
+            if (mouseY > height / 2) {
                 this.locate(3);
             }
         }
